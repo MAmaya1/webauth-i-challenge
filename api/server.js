@@ -20,6 +20,6 @@ server.get('/', (req, res) => {
     res.send('Hi there!');
 })
 
-server.use('/api/users', usersRouter);
+server.use('/api', usersRouter);
 
 module.exports = server;
