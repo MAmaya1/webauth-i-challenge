@@ -22,7 +22,7 @@ async function add(user) {
     return getUserById(id);
 }
 
-function getUserById(id) {
+function getUserById(id) { //Only used within this file, in the add function above
     return db('users')
         .where({ id })
         .first();
