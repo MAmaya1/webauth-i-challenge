@@ -3,9 +3,13 @@ const bcrypt = require('bcryptjs');
 
 const Users = require('../users/users-model');
 
+// Import Middleware
+
+const protected = require('../auth/restricted-middleware');
+
 // GET users
 
-router.get('/users', (req, res) => {
+router.get('/users', protected, (req, res) => {
     Users.getUsers()
         .then(users => {
             res.status(201).json(users)
