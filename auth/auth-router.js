@@ -45,4 +45,20 @@ router.post('/login', (req, res) => {
         })
 })
 
+// Logout
+
+router.post('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy(err => {
+            if (err) {
+                res.send('Cannot log out!')
+            } else {
+                res.send('Bye!')
+            }
+        })
+    } else {
+        res.end();
+    }
+})
+
 module.exports = router;
