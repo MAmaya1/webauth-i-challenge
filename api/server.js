@@ -3,6 +3,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const session = require('express-session');
 
 const server = express();
 
@@ -11,8 +12,23 @@ const server = express();
 const authRouter = require('../auth/auth-router');
 const usersRouter = require('../users/users-router');
 
+// Configure Session
+
+const sessionConfig = {
+    name: 'cookie',
+    secret: 'keep it secret, keep it safe! -gandalf',
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 5,
+        secure: false
+    },
+    resave: false,
+    saveUninitialized: true
+}
+
 // Global Middleware
 
+server.use(session(sessionConfig));
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
