@@ -8,6 +8,7 @@ const server = express();
 
 // Import Routers
 
+const authRouter = require('../auth/auth-router');
 const usersRouter = require('../users/users-router');
 
 // Global Middleware
@@ -21,7 +22,7 @@ server.use(cors());
 server.get('/', (req, res) => {
     res.send('Hi there!');
 })
-
+server.use('/api/auth', authRouter);
 server.use('/api/users', usersRouter);
 
 module.exports = server;
